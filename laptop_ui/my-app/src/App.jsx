@@ -1,15 +1,14 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import NavigationBar from './Modules/Navbar/Navbar.jsx'
 
 function App() {
   
 
   return (
-    <div align="center">
-      <h1>Vite + React</h1>
-    </div>
+    <>
+      <NavigationBar/>
+    </>
     
   )
 }

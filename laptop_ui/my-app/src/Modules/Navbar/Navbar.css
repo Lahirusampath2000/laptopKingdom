@@ -1,0 +1,45 @@
+/* Navbar background and padding */
+.navbar {
+    background-color: #2d33dc !important; /* blue background */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* subtle shadow */
+    padding: 0.8rem 2rem;
+}
+
+/* Brand styling */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff !important; /* white text */
+    text-transform: uppercase;
+}
+
+/* Nav links styling */
+.nav-link {
+    font-size: 1rem;
+    font-weight: 700; /* bold text */
+    margin-left: 1rem;
+    color: #ffffff !important; /* white text */
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for links */
+.nav-link:hover {
+    color: #ffdd57 !important; /* optional hover color */
+    transform: scale(1.05);
+}
+
+/* Active link styling */
+.nav-link.active {
+    color: #ffdd57 !important; /* optional active color */
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+    .nav-link {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
