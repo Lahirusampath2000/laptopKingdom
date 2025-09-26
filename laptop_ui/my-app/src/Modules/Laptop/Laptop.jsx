@@ -21,7 +21,7 @@ function Laptop() {
        e.preventDefault();
         console.log(formData);
         try {
-            const response=await fetch("http://localhost:8080/api/laptops", {
+            const response=await fetch("http://localhost:8080/api/laptop", {
                 method:"POST",
                 headers:{"content-Type": "application/json"},
                 body:JSON.stringify(formData)
