@@ -6,6 +6,8 @@ import com.example.laptop_server.service.LaptopService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("*")
@@ -25,5 +27,10 @@ public class LaptopController {
         laptop.setQuantity(laptopDto.getQuantity());
 
         return laptopService.addLaptop(laptop);
+    }
+
+    @GetMapping("/laptops")
+    public List<Laptop> getAllLaptops() {
+        return laptopService.getAllLaptops();
     }
 }
