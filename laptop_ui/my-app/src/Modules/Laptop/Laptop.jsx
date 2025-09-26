@@ -111,6 +111,22 @@ useEffect(() =>{
                         <th>Action</th>
                     </tr>
                     </thead>
+                    <tbody>
+                        {laptops.map((laptop) =>(
+                            <tr key={laptop.id}>
+                            <td>{laptop.id}</td>
+                            <td>{laptop.brand}</td>
+                            <td>{laptop.price}</td>
+                            <td>{laptop.quantity}</td>
+                            <td>
+                                <Button variant="info" size="sm" className='me-2'>Edit</Button>
+                                <Button variant="danger" size="sm">Delete</Button>
+                            </td>
+
+                            </tr>
+
+                        ))}
+                    </tbody>
                 </Table>
                 </Col>
             </Row>
