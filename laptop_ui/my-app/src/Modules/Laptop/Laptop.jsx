@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState,useEffect} from 'react'
 import './Laptop.css'
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Table } from 'react-bootstrap';
 import api from '../../api/axios';
 
 
@@ -57,6 +57,7 @@ useEffect(() =>{
 },[])
 
   return (
+    <>
     <div className='center-form'>
         <h1>Add New Laptop</h1>
         {/* --- Laptop add Form --- */}
@@ -95,8 +96,30 @@ useEffect(() =>{
                 Submit
             </Button>
         </Form>
+        {/* --- Display added Laptops in table --- */}
+        <Container className='mt-4'>
+            <Row>
+                <Col>
+                <h1 className='text-center'>Laptops</h1>
+                <Table striped bordered hover responsive>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                </Table>
+                </Col>
+            </Row>
+        </Container>
+        
+        
     </div>
     
+    </>
   )
 }
 
