@@ -16,9 +16,29 @@ function Laptop() {
         const{name, value} = event.target;
         setFormData({...formData, [name]: value})
     }
-    const handleSubmit = (e) => {
+
+    const handleSubmit =async (e) => {
        e.preventDefault();
         console.log(formData);
+        try {
+            const response=await fetch("http://localhost:8080/api/laptops", {
+                method:"POST",
+                headers:{"content-Type": "application/json"},
+                body:JSON.stringify(formData)
+            });
+            const data=await response.json();
+            console.log(data);
+            alert("Laptop added successfully");
+            setFormData({
+                brand: "",
+                price: "",
+                quantity: ""
+            })
+        } catch (error) {
+            console.log("error", error);
+            alert("Error adding laptop")
+            
+        }
     }
 
   return (
