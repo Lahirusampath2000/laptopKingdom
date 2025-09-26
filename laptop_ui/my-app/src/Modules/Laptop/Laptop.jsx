@@ -16,11 +16,15 @@ function Laptop() {
         const{name, value} = event.target;
         setFormData({...formData, [name]: value})
     }
+    const handleSubmit = (e) => {
+       e.preventDefault();
+        console.log(formData);
+    }
 
   return (
     <div className='center-form'>
         <h1>Add New Laptop</h1>
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicName">
                 <Form.Control
                     type="text"
