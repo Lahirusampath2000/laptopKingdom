@@ -1,6 +1,7 @@
 import React from 'react'
 import './Laptop.css'
 import { Form, Button } from 'react-bootstrap';
+import api from '../../api/axios';
 
 
 
@@ -18,28 +19,21 @@ function Laptop() {
     }
 
     const handleSubmit =async (e) => {
-       e.preventDefault();
-        console.log(formData);
-        try {
-            const response=await fetch("http://localhost:8080/api/laptop", {
-                method:"POST",
-                headers:{"content-Type": "application/json"},
-                body:JSON.stringify(formData)
-            });
-            const data=await response.json();
-            console.log(data);
-            alert("Laptop added successfully");
-            setFormData({
-                brand: "",
-                price: "",
-                quantity: ""
-            })
-        } catch (error) {
-            console.log("error", error);
-            alert("Error adding laptop")
-            
-        }
+        e.preventDefault();
+        try{
+        const response = await api.post("/laptop", formData);
+        console.log(response.data);
+        alert("Laptop added successfully!");
+        setFormData({
+            brand: "",
+            price: "",
+            quantity: ""
+        });
+        }catch(error){
+        console.error(error.response?.data || error.message);
+        alert("Failed to add laptop. Please try again.");
     }
+}
 
   return (
     <div className='center-form'>

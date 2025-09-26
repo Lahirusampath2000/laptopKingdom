@@ -4,6 +4,8 @@ import com.example.laptop_server.entity.Laptop;
 import com.example.laptop_server.repository.LaptopRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LaptopService {
 
@@ -15,5 +17,9 @@ public class LaptopService {
 
     public Laptop addLaptop(Laptop laptop) {
         return laptopRepository.save(laptop);
+    }
+
+    public List<Laptop> getAllLaptops() {
+        return laptopRepository.findAll();
     }
 }
