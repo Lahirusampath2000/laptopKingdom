@@ -7,7 +7,8 @@ function Laptop() {
   const [formData, setFormData] = useState({
     brand: '',
     price: '',
-    quantity: ''
+    quantity: '',
+    image: null
   })
 
   const [laptops, setLaptops] = useState([])
@@ -17,22 +18,31 @@ function Laptop() {
     setFormData({ ...formData, [name]: value })
   }
 
-  // POST laptop data
+  const handleImageChange = (e) => {
+    setFormData({ ...formData, image: e.target.files[0] })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const data = new FormData()
+    data.append('brand', formData.brand)
+    data.append('price', formData.price)
+    data.append('quantity', formData.quantity)
+    if (formData.image) data.append('image', formData.image)
+
     try {
-      const response = await api.post('/laptop', formData)
-      console.log(response.data)
+      await api.post('/laptop', data, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
       alert('Laptop added successfully!')
-      setFormData({ brand: '', price: '', quantity: '' })
-      fetchLaptops() // refresh table after add
+      setFormData({ brand: '', price: '', quantity: '', image: null })
+      fetchLaptops()
     } catch (error) {
       console.error(error.response?.data || error.message)
       alert('Failed to add laptop. Please try again.')
     }
   }
 
-  // Fetch laptop data
   const fetchLaptops = async () => {
     try {
       const response = await api.get('/laptops')
@@ -49,7 +59,7 @@ function Laptop() {
   return (
     <Container className="laptop-container my-5">
       <Row>
-        {/* ===== Left Side – Form ===== */}
+        {/* Form Section */}
         <Col lg={4} md={5} sm={12}>
           <Card className="shadow-sm p-4 mb-4 mb-lg-0 form-card">
             <h2 className="text-center mb-4">Add New Laptop</h2>
@@ -81,6 +91,13 @@ function Laptop() {
                   onChange={handleInputChange}
                 />
               </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="file"
+                  name="image"
+                  onChange={handleImageChange}
+                />
+              </Form.Group>
               <Button className="btn-primary w-100" type="submit">
                 Submit
               </Button>
@@ -88,7 +105,7 @@ function Laptop() {
           </Card>
         </Col>
 
-        {/* ===== Right Side – Table ===== */}
+        {/* Table Section */}
         <Col lg={8} md={7} sm={12}>
           <Card className="shadow-sm p-4 table-card">
             <h2 className="text-center mb-4">Laptop List</h2>
@@ -99,7 +116,7 @@ function Laptop() {
                   <th>Brand</th>
                   <th>Price</th>
                   <th>Quantity</th>
-                  <th>Action</th>
+                  <th>Image</th>
                 </tr>
               </thead>
               <tbody>
@@ -110,12 +127,15 @@ function Laptop() {
                     <td>{laptop.price}</td>
                     <td>{laptop.quantity}</td>
                     <td>
-                      <Button variant="info" size="sm" className="me-2">
-                        Edit
-                      </Button>
-                      <Button variant="danger" size="sm">
-                        Delete
-                      </Button>
+                      {laptop.image ? (
+                        <img
+                          src={`data:image/jpeg;base64,${laptop.image}`}
+                          alt="Laptop"
+                          width="60"
+                        />
+                      ) : (
+                        'No Image'
+                      )}
                     </td>
                   </tr>
                 ))}
