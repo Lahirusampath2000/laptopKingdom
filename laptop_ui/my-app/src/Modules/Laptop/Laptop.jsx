@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Laptop.css'
-import { Form, Button, Container, Row, Col, Table, Card } from 'react-bootstrap'
+import { Form, Button, Container, Table, Card } from 'react-bootstrap'
 import api from '../../api/axios'
 
 function Laptop() {
@@ -58,92 +58,86 @@ function Laptop() {
 
   return (
     <Container className="laptop-container my-5">
-      <Row>
-        {/* Form Section */}
-        <Col lg={4} md={5} sm={12}>
-          <Card className="shadow-sm p-4 mb-4 mb-lg-0 form-card">
-            <h2 className="text-center mb-4">Add New Laptop</h2>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Laptop Brand"
-                  name="brand"
-                  value={formData.brand}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Laptop Price"
-                  name="price"
-                  value={formData.price}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Quantity"
-                  name="quantity"
-                  value={formData.quantity}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Control
-                  type="file"
-                  name="image"
-                  onChange={handleImageChange}
-                />
-              </Form.Group>
-              <Button className="btn-primary w-100" type="submit">
-                Submit
-              </Button>
-            </Form>
-          </Card>
-        </Col>
+      {/* ===== Form Section ===== */}
+      <Card className="shadow-sm p-4 mb-5 form-card mx-auto">
+        <h2 className="text-center mb-4">Add New Laptop</h2>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Control
+              type="text"
+              placeholder="Enter Laptop Brand"
+              name="brand"
+              value={formData.brand}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Control
+              type="text"
+              placeholder="Enter Laptop Price"
+              name="price"
+              value={formData.price}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Control
+              type="text"
+              placeholder="Enter Quantity"
+              name="quantity"
+              value={formData.quantity}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Control
+              type="file"
+              name="image"
+              onChange={handleImageChange}
+            />
+          </Form.Group>
+          <Button className="btn-primary w-100" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </Card>
 
-        {/* Table Section */}
-        <Col lg={8} md={7} sm={12}>
-          <Card className="shadow-sm p-4 table-card">
-            <h2 className="text-center mb-4">Laptop List</h2>
-            <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Brand</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Image</th>
-                </tr>
-              </thead>
-              <tbody>
-                {laptops.map((laptop) => (
-                  <tr key={laptop.id}>
-                    <td>{laptop.id}</td>
-                    <td>{laptop.brand}</td>
-                    <td>{laptop.price}</td>
-                    <td>{laptop.quantity}</td>
-                    <td>
-                      {laptop.image ? (
-                        <img
-                          src={`data:image/jpeg;base64,${laptop.image}`}
-                          alt="Laptop"
-                          width="60"
-                        />
-                      ) : (
-                        'No Image'
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </Card>
-        </Col>
-      </Row>
+      {/* ===== Table Section ===== */}
+      <Card className="shadow-sm p-4 table-card mx-auto">
+        <h2 className="text-center mb-4">Laptop List</h2>
+        <Table striped bordered hover responsive>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Brand</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Image</th>
+            </tr>
+          </thead>
+          <tbody>
+            {laptops.map((laptop) => (
+              <tr key={laptop.id}>
+                <td>{laptop.id}</td>
+                <td>{laptop.brand}</td>
+                <td>{laptop.price}</td>
+                <td>{laptop.quantity}</td>
+                <td>
+                  {laptop.image ? (
+                    <img
+                      src={`data:image/jpeg;base64,${laptop.image}`}
+                      alt="Laptop"
+                      width="60"
+                    />
+                  ) : (
+                    'No Image'
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Card>
     </Container>
   )
 }

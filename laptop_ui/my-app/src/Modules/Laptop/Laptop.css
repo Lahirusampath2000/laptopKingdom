@@ -1,14 +1,17 @@
 /* ==== General Container ==== */
 .laptop-container {
-  max-width: 1200px;
+  max-width: 900px;       /* Keep overall page width moderate */
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* ===== Form Card ===== */
 .form-card {
+  max-width: 450px;       /* ✅ Reduce width */
+  margin: 40px auto;      /* ✅ Center horizontally & add spacing */
   border-radius: 16px;
   background: #ffffff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 100px;
 }
 
 .form-card:hover {
@@ -20,7 +23,7 @@
   font-size: 1.6rem;
   font-weight: 600;
   color: #2d33dc;
-  letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .form-card .form-control {
@@ -28,13 +31,11 @@
   border: 1px solid #e0e0e0;
   border-radius: 10px;
   font-size: 1rem;
-  transition: all 0.3s ease;
 }
 
 .form-card .form-control:focus {
   border-color: #2d33dc;
   box-shadow: 0 0 8px rgba(45, 51, 220, 0.25);
-  outline: none;
 }
 
 .form-card .btn-primary {
@@ -55,18 +56,12 @@
 .table-card {
   border-radius: 16px;
   background: #ffffff;
-  margin-top: 100px;
+  margin-top: 40px;       /* Add some spacing below the form */
 }
 
 .table-card h2 {
   font-size: 1.6rem;
   font-weight: 600;
   color: #2d33dc;
-}
-
-/* Responsive spacing */
-@media (max-width: 768px) {
-  .form-card {
-    margin-bottom: 20px;
-  }
+  text-align: center;
 }
